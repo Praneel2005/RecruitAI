@@ -1,10 +1,10 @@
 /**
- * Login Page Script
+ * Login Page Script - No Auto Redirect
  */
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 Login page loaded - NO AUTO REDIRECT');
+    console.log('📄 Login page loaded');
     
-    // Hide loading screen immediately
+    // Hide loading screen
     const loader = document.getElementById('loading-screen');
     if (loader) {
         setTimeout(() => {
@@ -12,6 +12,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     }
 
-    // DON'T check if already logged in - let user stay on login page
-    console.log('👤 Login page ready');
+    console.log('✅ Login page ready - no auto-redirect');
 });
