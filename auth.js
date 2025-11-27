@@ -21,34 +21,48 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Check for existing auth session
  */
+/**
+ * Check for existing auth session
+ */
 async function checkAuthSession() {
     console.log('🔍 Checking auth session...');
+    
+    // Get current page
+    const currentPath = window.location.pathname;
+    const isLoginPage = currentPath === '/' || 
+                        currentPath === '/index.html' || 
+                        currentPath.includes('login.html');
+    
+    console.log('📄 Current page:', currentPath, 'Is login page:', isLoginPage);
+    
+    // Skip auth check on login page
+    if (isLoginPage) {
+        console.log('✅ On login page, no redirect needed');
+        return;
+    }
     
     try {
         const { data: { session }, error } = await supabase.auth.getSession();
         
         if (error) {
             console.error('Session check error:', error);
-            window.location.href = 'login.html';
             return;
         }
 
         if (!session) {
             console.log('❌ No active session, redirecting to login');
-            window.location.href = 'login.html';
+            window.location.href = '/index.html';
             return;
         }
 
         console.log('✅ Active session found:', session.user.email);
-        
-        // Update user profile in navbar
         updateUserProfile();
         
     } catch (error) {
         console.error('Auth check failed:', error);
-        window.location.href = 'login.html';
     }
 }
+
 
 /**
  * Handle login form submission with Supabase
@@ -209,3 +223,4 @@ function showNotification(message, type = 'info') {
         setTimeout(() => notification.remove(), 300);
     }, 5000);
 }
+
