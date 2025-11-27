@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates - RecruitAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-brain"></i> RecruitAI
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="jobs.html" class="nav-link">
+                    <i class="fas fa-briefcase"></i> Jobs
+                </a>
+                <a href="candidates.html" class="nav-link active">
+                    <i class="fas fa-users"></i> Candidates
+                </a>
+                <a href="upload.html" class="nav-link">
+                    <i class="fas fa-upload"></i> Upload
+                </a>
+                <a href="verify.html" class="nav-link">
+                    <i class="fas fa-check-circle"></i> Verify
+                </a>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">HR</div>
+                    <span>HR Manager</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>All Candidates</h1>
+                <p class="page-subtitle">View and manage candidate profiles</p>
+            </div>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search candidates..." id="candidateSearch">
+        </div>
+
+        <!-- Candidates Grid -->
+        <div class="candidates-grid" id="candidatesGrid">
+            <!-- Candidates will be rendered here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Candidate Modal -->
+    <div class="modal" id="candidateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalCandidateTitle">Candidate Profile</h3>
+                <button class="modal-close" onclick="closeCandidateModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalCandidateBody">
+                <!-- Modal content will be rendered here -->
+            </div>
+        </div>
+    </div>
+    <!-- Top Candidates -->
+<div class="dashboard-card">
+    <div class="card-header">
+        <h3 class="card-title">Top Candidates</h3>
+        <a href="candidates.html" class="btn btn-sm btn-outline">View All</a>
+    </div>
+    <div class="candidates-list" id="topCandidatesList">
+        <div class="empty-state">
+            <p>No candidates yet</p>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Notifications Container -->
+    <div class="notifications" id="notifications"></div>
+
+      <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="candidates.js"></script>
+</body>
+</html>
+
+

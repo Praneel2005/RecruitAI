@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - RecruitAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-brain"></i> RecruitAI
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="jobs.html" class="nav-link active">
+                    <i class="fas fa-briefcase"></i> Jobs
+                </a>
+                <a href="candidates.html" class="nav-link">
+                    <i class="fas fa-users"></i> Candidates
+                </a>
+                <a href="upload.html" class="nav-link">
+                    <i class="fas fa-upload"></i> Upload
+                </a>
+                <a href="verify.html" class="nav-link">
+                    <i class="fas fa-check-circle"></i> Verify
+                </a>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">HR</div>
+                    <span>HR Manager</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>Job Openings</h1>
+                <p class="page-subtitle">Manage your active job positions and requirements</p>
+            </div>
+            <button class="btn btn-primary" id="addJobBtn">
+                <i class="fas fa-plus"></i> Add New Job
+            </button>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search jobs..." id="jobSearch">
+        </div>
+
+        <!-- Jobs Grid -->
+        <div class="jobs-grid" id="jobsGrid">
+            <!-- Jobs will be rendered here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Job Modal -->
+    <div class="modal" id="jobModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalJobTitle">Job Details</h3>
+                <button class="modal-close" onclick="closeJobModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalJobBody">
+                <!-- Modal content will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Container -->
+    <div class="notifications" id="notifications"></div>
+
+         <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="jobs.js"></script>
+</body>
+</html>
+

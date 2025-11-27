@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify - RecruitAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-brain"></i> RecruitAI
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="jobs.html" class="nav-link">
+                    <i class="fas fa-briefcase"></i> Jobs
+                </a>
+                <a href="candidates.html" class="nav-link">
+                    <i class="fas fa-users"></i> Candidates
+                </a>
+                <a href="upload.html" class="nav-link">
+                    <i class="fas fa-upload"></i> Upload
+                </a>
+                <a href="verify.html" class="nav-link active">
+                    <i class="fas fa-check-circle"></i> Verify
+                </a>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">HR</div>
+                    <span>HR Manager</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>Certificate Verification</h1>
+                <p class="page-subtitle">Verify academic credentials using blockchain technology</p>
+            </div>
+        </div>
+
+        <div class="verify-layout">
+          <!-- Verify Section -->
+<div class="verify-section">
+    <div class="verify-card">
+        <h3 class="card-title">Upload Certificate</h3>
+        
+        <div class="verify-area" id="verifyArea">
+            <input type="file" id="certFileInput" accept=".pdf,.jpg,.jpeg,.png">
+            <div class="verify-icon">
+                <i class="fas fa-certificate"></i>
+            </div>
+            <h3>Drag & drop certificate here</h3>
+            <span class="file-types">PDF, JPG, PNG (Max 10MB)</span>
+        </div>
+
+        <div class="selected-file" id="selectedFile" style="display: none;">
+            <!-- Selected file will appear here -->
+        </div>
+
+        <button class="btn btn-primary" id="verifyBtn" style="width: 100%; display: none;">
+            <i class="fas fa-check-circle"></i> Verify Certificate
+        </button>
+    </div>
+</div>
+
+
+            <!-- Result Section -->
+            <div class="result-section">
+                <div class="verify-card">
+                    <h3 class="card-title">Verification Result</h3>
+                    <div class="verification-result" id="verificationResult">
+                        <div class="empty-state">
+                            <p>Upload a certificate to verify</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Container -->
+    <div class="notifications" id="notifications"></div>
+
+     <!-- Scripts - CORRECT ORDER -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="verify.js"></script>
+</body>
+</html>

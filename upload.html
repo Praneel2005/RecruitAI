@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload - RecruitAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-brain"></i> RecruitAI
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="jobs.html" class="nav-link">
+                    <i class="fas fa-briefcase"></i> Jobs
+                </a>
+                <a href="candidates.html" class="nav-link">
+                    <i class="fas fa-users"></i> Candidates
+                </a>
+                <a href="upload.html" class="nav-link active">
+                    <i class="fas fa-upload"></i> Upload
+                </a>
+                <a href="verify.html" class="nav-link">
+                    <i class="fas fa-check-circle"></i> Verify
+                </a>
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar">HR</div>
+                    <span>HR Manager</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>AI Resume Parser & Job Matcher</h1>
+                <p class="page-subtitle">Upload resumes for automatic parsing and intelligent job matching</p>
+            </div>
+        </div>
+
+        <div class="upload-layout">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="upload-card">
+                    <h3 class="card-title">Upload Resume</h3>
+                    <p style="color: var(--gray-600); font-size: 14px; margin-bottom: 20px;">
+                        <i class="fas fa-magic"></i> Files will be parsed automatically and matched with jobs
+                    </p>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="resumeFileInput" multiple accept=".pdf,.docx,.txt">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Drag & Drop Resume Files</h3>
+                        <p>or click to browse</p>
+                        <span class="file-types">Auto-parse on upload • PDF, DOCX, TXT (Max 10MB)</span>
+                    </div>
+
+                    <div class="uploaded-files" id="uploadedFiles">
+                        <!-- Processing files will appear here -->
+                    </div>
+
+                    <!-- Features Info -->
+                    <div style="margin-top: 24px; padding: 16px; background: var(--gray-50); border-radius: 12px; border: 1px solid var(--gray-200);">
+                        <h4 style="font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 12px;">
+                            <i class="fas fa-robot"></i> AI Features
+                        </h4>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="font-size: 13px; color: var(--gray-600);">
+                                <i class="fas fa-check" style="color: var(--success);"></i> Auto-extract candidate information
+                            </div>
+                            <div style="font-size: 13px; color: var(--gray-600);">
+                                <i class="fas fa-check" style="color: var(--success);"></i> Identify skills and experience
+                            </div>
+                            <div style="font-size: 13px; color: var(--gray-600);">
+                                <i class="fas fa-check" style="color: var(--success);"></i> Match with best-fit jobs
+                            </div>
+                            <div style="font-size: 13px; color: var(--gray-600);">
+                                <i class="fas fa-check" style="color: var(--success);"></i> Calculate compatibility score
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="results-card">
+                    <div class="card-header" style="margin-bottom: 16px;">
+                        <h3 class="card-title">Parsed Results & Job Matches</h3>
+                    </div>
+                    <div class="parsing-results" id="parsingResults">
+                        <div class="empty-state">
+                            <i class="fas fa-file-upload" style="font-size: 48px; color: var(--gray-300); margin-bottom: 16px;"></i>
+                            <p>Upload resumes to see parsed results and job matches</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Container -->
+    <div class="notifications" id="notifications"></div>
+
+    <!-- Scripts - CORRECT ORDER FOR UPLOAD PAGE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html>
