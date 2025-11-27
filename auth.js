@@ -12,46 +12,38 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', handleLogin);
     }
 
-    // Check for existing session on protected pages
-    if (!window.location.pathname.includes('login.html')) {
-        checkAuthSession();
-    }
-});
-
-/**
- * Check for existing auth session
- */
-/**
- * Check for existing auth session
- */
-async function checkAuthSession() {
-    console.log('🔍 Checking auth session...');
-    
-    // Get current page
+    // ONLY check auth on protected pages (NOT on login page)
     const currentPath = window.location.pathname;
     const isLoginPage = currentPath === '/' || 
                         currentPath === '/index.html' || 
                         currentPath.includes('login.html');
     
-    console.log('📄 Current page:', currentPath, 'Is login page:', isLoginPage);
-    
-    // Skip auth check on login page
-    if (isLoginPage) {
-        console.log('✅ On login page, no redirect needed');
-        return;
+    if (!isLoginPage) {
+        console.log('🔒 Protected page detected, checking auth...');
+        checkAuthSession();
+    } else {
+        console.log('📄 Login page detected, no auth check needed');
     }
+});
+
+/**
+ * Check for existing auth session (ONLY on protected pages)
+ */
+async function checkAuthSession() {
+    console.log('🔍 Checking auth session...');
     
     try {
         const { data: { session }, error } = await supabase.auth.getSession();
         
         if (error) {
             console.error('Session check error:', error);
+            redirectToLogin();
             return;
         }
 
         if (!session) {
             console.log('❌ No active session, redirecting to login');
-            window.location.href = '/index.html';
+            redirectToLogin();
             return;
         }
 
@@ -60,9 +52,27 @@ async function checkAuthSession() {
         
     } catch (error) {
         console.error('Auth check failed:', error);
+        redirectToLogin();
     }
 }
 
+/**
+ * Redirect to login (with protection against loops)
+ */
+function redirectToLogin() {
+    const currentPath = window.location.pathname;
+    
+    // Don't redirect if already on login page
+    if (currentPath === '/' || 
+        currentPath === '/index.html' || 
+        currentPath.includes('login.html')) {
+        console.log('⚠️ Already on login page, stopping redirect loop');
+        return;
+    }
+    
+    console.log('🔄 Redirecting to login page');
+    window.location.href = '/index.html';
+}
 
 /**
  * Handle login form submission with Supabase
@@ -126,7 +136,7 @@ async function handleLogin(e) {
 
             // Redirect to dashboard
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard.html';
             }, 1000);
         }
     } catch (error) {
@@ -153,7 +163,7 @@ async function logout() {
         showNotification('Logged out successfully', 'info');
 
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = '/index.html';
         }, 500);
     } catch (error) {
         console.error('Logout error:', error);
@@ -223,4 +233,3 @@ function showNotification(message, type = 'info') {
         setTimeout(() => notification.remove(), 300);
     }, 5000);
 }
-
