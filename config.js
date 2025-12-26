@@ -6,10 +6,13 @@
 const SUPABASE_URL = 'https://ikgkjqljzllvmkgdyijm.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlrZ2tqcWxqemxsdm1rZ2R5aWptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyNjEwNzMsImV4cCI6MjA3OTgzNzA3M30.a8Hg6ZDF_1sReYF6i_xlblwGv9C3JjxbMQxUXqs4P5A';
 
-// Initialize Supabase client immediately
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// ⚠️ CRITICAL FIX: Overwrite the global 'supabase' variable
+// We use a temporary variable '_client' to create the connection, 
+// then assign it to 'window.supabase' so all other files find the correct connection.
+const _client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+window.supabase = _client;
 
-console.log('✅ Supabase client initialized');
+console.log('✅ Supabase client initialized and exposed globally');
 
 // Configuration object
 const API_CONFIG = {
@@ -24,7 +27,7 @@ const API_CONFIG = {
 
 // Get current authenticated user
 async function getCurrentUser() {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const { data: { user }, error } = await window.supabase.auth.getUser();
     if (error) {
         console.error('Error getting user:', error);
         return null;
@@ -34,7 +37,7 @@ async function getCurrentUser() {
 
 // Get current session
 async function getSession() {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await window.supabase.auth.getSession();
     if (error) {
         console.error('Error getting session:', error);
         return null;
